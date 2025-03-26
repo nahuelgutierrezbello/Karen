@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plan Premium - Escuela Bienestar Integral</title>
+    <style>
+      body {
+        font-family: "Nunito", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .premium-container {
+        background-color: #f9f4e8;
+        border-radius: 15px;
+        padding: 30px;
+        margin-top: 30px;
+      }
+
+      .premium-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .premium-benefits {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .benefit-item {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .pricing-box {
+        background: #6b8e23;
+        color: white;
+        padding: 25px;
+        border-radius: 10px;
+        text-align: center;
+        max-width: 400px;
+        margin: 0 auto 30px;
+      }
+
+      .price {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+
+      .payment-options {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .payment-btn {
+        background: #009ee3;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 25px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .payment-btn:hover {
+        background: #0078b4;
+        transform: translateY(-2px);
+      }
+
+      .auto-debit {
+        margin-top: 20px;
+        font-size: 0.9em;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="premium-container">
+      <div class="premium-header">
+        <h1>Plan Premium</h1>
+        <p>
+          Acceso completo a todos nuestros recursos por un precio único mensual
+        </p>
+      </div>
+
+      <div class="pricing-box">
+        <h2>Membresía Premium</h2>
+        <div class="price">$14.900/mes</div>
+        <p>Facturación recurrente mensual</p>
+      </div>
+
+      <div class="premium-benefits">
+        <div class="benefit-item">
+          <h3>✅ Todos los cursos</h3>
+          <p>
+            Acceso ilimitado a todos nuestros cursos, talleres y diplomados.
+          </p>
+        </div>
+        <div class="benefit-item">
+          <h3>✅ Contenido exclusivo</h3>
+          <p>Material adicional disponible solo para miembros premium.</p>
+        </div>
+        <div class="benefit-item">
+          <h3>✅ Prácticas en vivo</h3>
+          <p>Participación en sesiones en vivo exclusivas para la comunidad.</p>
+        </div>
+        <div class="benefit-item">
+          <h3>✅ Nuevos cursos mensuales</h3>
+          <p>Contenido nuevo agregado cada mes sin costo adicional.</p>
+        </div>
+      </div>
+
+      <div class="payment-options">
+        <button class="payment-btn" id="mercadoPagoBtn">
+          Suscribirme con MercadoPago
+        </button>
+        <button class="payment-btn" id="debitoBtn">Débito Automático</button>
+      </div>
+
+      <div class="auto-debit">
+        <input type="checkbox" id="autoDebitCheck" />
+        <label for="autoDebitCheck"
+          >Activar renovación automática mensual</label
+        >
+      </div>
+    </div>
+
+    <!-- Script de MercadoPago -->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script>
+      // Configuración de MercadoPago
+      const mp = new MercadoPago("TU_PUBLIC_KEY", {
+        locale: "es-AR",
+      });
+
+      document
+        .getElementById("mercadoPagoBtn")
+        .addEventListener("click", function () {
+          // Crear preferencia de pago
+          const preference = {
+            items: [
+              {
+                title: "Plan Premium - Escuela Bienestar Integral",
+                unit_price: 14900,
+                quantity: 1,
+                description: "Membresía mensual con acceso a todos los cursos",
+                currency_id: "ARS",
+              },
+            ],
+            back_urls: {
+              success: "https://tusitio.com/pago-exitoso",
+              failure: "https://tusitio.com/pago-fallido",
+              pending: "https://tusitio.com/pago-pendiente",
+            },
+            auto_return: "approved",
+            notification_url: "https://tusitio.com/webhook",
+            statement_descriptor: "ESCUELA BIENESTAR",
+          };
+
+          // Aquí deberías hacer una llamada a tu backend para crear la preferencia
+          // Este es solo un ejemplo básico
+          mp.checkout({
+            preference: preference,
+          });
+        });
+
+      document
+        .getElementById("debitoBtn")
+        .addEventListener("click", function () {
+          // Lógica para débito automático
+          alert("Redirigiendo a configuración de débito automático...");
+          // Aquí implementarías la lógica para débito automático
+        });
+    </script>
+  </body>
+</html>

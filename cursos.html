@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cursos - Escuela Bienestar Integral</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="index.html" class="logo">Escuela Bienestar Integral</a>
+        <div class="nav-links">
+          <a href="index.html#propuestas">Propuestas</a>
+          <a href="#contacto">Contacto</a>
+          <a href="#login" class="btn-login">Iniciar sesión</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="cursos-section">
+      <h2>Cursos, Talleres y Diplomados</h2>
+      <input type="text" id="buscador-cursos" placeholder="Buscar curso..." />
+
+      <div class="filtros-temas">
+        <button onclick="filtrarCursos('todos')">Todos</button>
+        <button onclick="filtrarCursos('angeles')">Ángeles</button>
+        <button onclick="filtrarCursos('reiki')">Reiki</button>
+        <!-- Agrega más botones según tus temas -->
+      </div>
+
+      <div class="cursos-grid">
+        <div class="curso-card" data-tema="angeles">
+          <h3>Curso de Ángeles</h3>
+          <p>Aprende a conectar con tus guías espirituales.</p>
+          <a href="#" class="btn-secondary">Ver detalles</a>
+        </div>
+        <div class="curso-card" data-tema="reiki">
+          <h3>Diplomado en Reiki Usui</h3>
+          <p>Formación completa en sanación energética.</p>
+          <a href="#" class="btn-secondary">Ver detalles</a>
+        </div>
+        <!-- Agrega más cursos -->
+      </div>
+    </section>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
